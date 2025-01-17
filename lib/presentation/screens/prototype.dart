@@ -208,24 +208,26 @@ class StepOne extends StatelessWidget {
               Text(
                 '1.',
                 style: TextStyle(
-                  fontSize: isDesktop ? 48 : 36,
-                  color: const Color(0xFF4A5568),
-                  fontWeight: FontWeight.bold,
+                  fontSize: isDesktop ? 60 : 36,
+                  color: const Color(0xFF718096),
+                  fontWeight: FontWeight.normal,
+                  fontFamily: 'Lato',
                 ),
               ),
               const SizedBox(width: 10),
               Text(
                 'Erstellen dein Lebenslauf',
                 style: TextStyle(
-                  fontSize: isDesktop ? 24 : 20,
-                  color: const Color(0xFF2D3748),
-                  fontWeight: FontWeight.bold,
+                  fontSize: isDesktop ? 16 : 12,
+                  color: const Color(0xFF718096),
+                  fontWeight: FontWeight.w500,
+                  fontFamily: 'Lato',
                 ),
               ),
             ],
           ),
           SizedBox(
-            width: 50,
+            width: 100,
           ),
           if (isDesktop)
             SvgPicture.asset(
@@ -252,36 +254,41 @@ class StepTwo extends StatelessWidget {
       ),
       color: const Color(0xFFE6F3FF).withOpacity(0.3),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           if (isDesktop)
             SvgPicture.asset(
               'assets/images/undraw_task_31wc.svg',
               width: 300,
             ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  '2.',
-                  style: TextStyle(
-                    fontSize: isDesktop ? 48 : 36,
-                    color: const Color(0xFF4A5568),
-                    fontWeight: FontWeight.bold,
-                  ),
+          SizedBox(
+            width: 100,
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.baseline,
+            textBaseline: TextBaseline.alphabetic,
+            children: [
+              Text(
+                '2.',
+                style: TextStyle(
+                  fontSize: isDesktop ? 60 : 36,
+                  color: const Color(0xFF718096),
+                  fontWeight: FontWeight.normal,
+                  fontFamily: 'Lato',
                 ),
-                const SizedBox(height: 10),
-                Text(
-                  'Erstellen dein Lebenslauf',
-                  style: TextStyle(
-                    fontSize: isDesktop ? 24 : 20,
-                    color: const Color(0xFF2D3748),
-                    fontWeight: FontWeight.bold,
-                  ),
+              ),
+              const SizedBox(width: 10),
+              Text(
+                'Erstellen dein Lebenslauf',
+                style: TextStyle(
+                  fontSize: isDesktop ? 16 : 12,
+                  color: const Color(0xFF718096),
+                  fontWeight: FontWeight.w500,
+                  fontFamily: 'Lato',
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ],
       ),
@@ -302,31 +309,44 @@ class StepThree extends StatelessWidget {
         vertical: 40,
       ),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  '3.',
-                  style: TextStyle(
-                    fontSize: isDesktop ? 48 : 36,
-                    color: const Color(0xFF4A5568),
-                    fontWeight: FontWeight.bold,
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.end, // Aligns content to the top
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                    '3.',
+                    style: TextStyle(
+                      fontSize: isDesktop ? 60 : 36,
+                      color: const Color(0xFF718096),
+                      fontWeight: FontWeight.normal,
+                      fontFamily: 'Lato',
+                    ),
                   ),
-                ),
-                const SizedBox(height: 10),
-                Text(
+                ],
+              ),
+              const SizedBox(width: 10),
+              SizedBox(
+                width: 150,
+                height: 60,
+                child: Text(
                   'Mit nur einem Klick bewerben',
                   style: TextStyle(
-                    fontSize: isDesktop ? 24 : 20,
-                    color: const Color(0xFF2D3748),
-                    fontWeight: FontWeight.bold,
+                    fontSize: isDesktop ? 16 : 12,
+                    color: const Color(0xFF718096),
+                    fontWeight: FontWeight.w500,
+                    fontFamily: 'Lato',
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
+          ),
+          SizedBox(
+            width: 100,
           ),
           if (isDesktop)
             SvgPicture.asset(
