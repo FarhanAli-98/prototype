@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:prototype/presentation/widgets/gradient_button.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:prototype/presentation/widgets/gradient_button.dart';
 import 'package:prototype/presentation/widgets/wave_section.dart';
-
-
 
 class JobWebsite extends StatelessWidget {
   const JobWebsite({super.key});
@@ -42,39 +40,54 @@ class HeaderSection extends StatelessWidget {
       color: const Color(0xFFE6F3FF),
       child: Row(
         children: [
-          Column(
-            children: [
-              Text(
-                'Deine Job\nwebsite',
-                style: TextStyle(
-                  fontSize: isDesktop ? 48 : 32,
-                  fontWeight: FontWeight.bold,
-                  color: const Color(0xFF2D3748),
+          Expanded(
+            flex: 1,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text(
+                  'Deine Job\nwebsite',
+                  style: TextStyle(
+                    fontSize: isDesktop ? 48 : 32,
+                    fontWeight: FontWeight.bold,
+                    color: const Color(0xFF2D3748),
+                  ),
+                ),
+                const SizedBox(height: 30),
+                if (isDesktop)
+                  GradientButton(
+                    width: 320,
+                    text: 'Kostenlos Registrieren',
+                    onPressed: () {
+                      // Define your action here
+                    },
+                  ),
+                if (!isDesktop)
+                  SvgPicture.asset(
+                    'assets/images/undraw_agreement_aajr.svg',
+                    height: 300,
+                  ),
+              ],
+            ),
+          ),
+          if (isDesktop)
+            Expanded(
+              flex: 3,
+              child: Container(
+                width: 350,
+                height: 350,
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.white,
+                ),
+                clipBehavior: Clip.hardEdge, // Ensures the image is clipped to the circle
+                child: SvgPicture.asset(
+                  'assets/images/undraw_agreement_aajr.svg',
+                  width: isDesktop ? 350 : 150,
+                  height: 350,
                 ),
               ),
-              const SizedBox(height: 30),
-                     if(isDesktop)
-              GradientButton(
-                width: 320,
-                text: 'Kostenlos Registrieren',
-                onPressed: () {
-                  // Define your action here
-                },
-              ),
-                if(!isDesktop)
-          SvgPicture.asset(
-            'assets/images/undraw_agreement_aajr.svg', 
-            height: 300,
-
-          ),
-            ],
-          ),
-          if(isDesktop)
-          SvgPicture.asset(
-            'assets/images/undraw_agreement_aajr.svg', 
-            width: isDesktop ? 200 : 150,
-            height: 200,
-          ),
+            ),
         ],
       ),
     );
@@ -185,35 +198,38 @@ class StepOne extends StatelessWidget {
         vertical: 40,
       ),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  '1.',
-                  style: TextStyle(
-                    fontSize: isDesktop ? 48 : 36,
-                    color: const Color(0xFF4A5568),
-                    fontWeight: FontWeight.bold,
-                  ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.baseline,
+            textBaseline: TextBaseline.alphabetic,
+            children: [
+              Text(
+                '1.',
+                style: TextStyle(
+                  fontSize: isDesktop ? 48 : 36,
+                  color: const Color(0xFF4A5568),
+                  fontWeight: FontWeight.bold,
                 ),
-                const SizedBox(height: 10),
-                Text(
-                  'Erstellen dein Lebenslauf',
-                  style: TextStyle(
-                    fontSize: isDesktop ? 24 : 20,
-                    color: const Color(0xFF2D3748),
-                    fontWeight: FontWeight.bold,
-                  ),
+              ),
+              const SizedBox(width: 10),
+              Text(
+                'Erstellen dein Lebenslauf',
+                style: TextStyle(
+                  fontSize: isDesktop ? 24 : 20,
+                  color: const Color(0xFF2D3748),
+                  fontWeight: FontWeight.bold,
                 ),
-              ],
-            ),
+              ),
+            ],
+          ),
+          SizedBox(
+            width: 50,
           ),
           if (isDesktop)
-            Image.asset(
-              'assets/step_1.png',
+            SvgPicture.asset(
+              'assets/images/undraw_Profile_data_re_v81r.svg',
               width: 300,
             ),
         ],
@@ -239,8 +255,8 @@ class StepTwo extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (isDesktop)
-            Image.asset(
-              'assets/step_2.png',
+            SvgPicture.asset(
+              'assets/images/undraw_task_31wc.svg',
               width: 300,
             ),
           Expanded(
@@ -313,8 +329,8 @@ class StepThree extends StatelessWidget {
             ),
           ),
           if (isDesktop)
-            Image.asset(
-              'assets/step_3.png',
+            SvgPicture.asset(
+              'assets/images/undraw_personal_file_222m.svg',
               width: 300,
             ),
         ],
