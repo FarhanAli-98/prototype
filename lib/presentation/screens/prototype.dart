@@ -124,7 +124,7 @@ class FlowBackground extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomPaint(
       painter: FlowPainter(),
-      size: const Size(double.infinity, 1000), // Adjust height as needed
+      size: const Size(double.infinity, 1300), // Adjust height as needed
     );
   }
 }
@@ -192,50 +192,76 @@ class StepOne extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDesktop = MediaQuery.of(context).size.width > 768;
 
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: isDesktop ? 80 : 20,
-        vertical: 40,
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.baseline,
-            textBaseline: TextBaseline.alphabetic,
+    return Column(
+      children: [
+        if (!isDesktop)
+          GradientButton(
+            width: 320,
+            text: 'Kostenlos Registrieren',
+            onPressed: () {
+              // Define your action here
+            },
+          ),
+        Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: isDesktop ? 80 : 20,
+            vertical: 40,
+          ),
+          child: Flex(
+            direction: isDesktop ? Axis.horizontal : Axis.vertical,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                '1.',
-                style: TextStyle(
-                  fontSize: isDesktop ? 60 : 36,
-                  color: const Color(0xFF718096),
-                  fontWeight: FontWeight.normal,
-                  fontFamily: 'Lato',
+              if (isDesktop) ...{
+                rowOne(isDesktop),
+                const SizedBox(
+                  width: 100,
                 ),
+              },
+              // if (isDesktop)
+              SvgPicture.asset(
+                'assets/images/undraw_Profile_data_re_v81r.svg',
+                width: isDesktop ? 300 : 250,
               ),
-              const SizedBox(width: 10),
-              Text(
-                'Erstellen dein Lebenslauf',
-                style: TextStyle(
-                  fontSize: isDesktop ? 16 : 12,
-                  color: const Color(0xFF718096),
-                  fontWeight: FontWeight.w500,
-                  fontFamily: 'Lato',
+              if (!isDesktop) ...{
+                const SizedBox(
+                  height: 10,
                 ),
-              ),
+                rowOne(isDesktop),
+              },
             ],
           ),
-          SizedBox(
-            width: 100,
+        ),
+      ],
+    );
+  }
+
+  Row rowOne(bool isDesktop) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.baseline,
+      textBaseline: TextBaseline.alphabetic,
+      mainAxisAlignment: isDesktop ? MainAxisAlignment.start : MainAxisAlignment.center,
+      children: [
+        Text(
+          '1.',
+          style: TextStyle(
+            fontSize: isDesktop ? 60 : 36,
+            color: const Color(0xFF718096),
+            fontWeight: FontWeight.normal,
+            fontFamily: 'Lato',
           ),
-          if (isDesktop)
-            SvgPicture.asset(
-              'assets/images/undraw_Profile_data_re_v81r.svg',
-              width: 300,
-            ),
-        ],
-      ),
+        ),
+        const SizedBox(width: 10),
+        Text(
+          'Erstellen dein Lebenslauf',
+          style: TextStyle(
+            fontSize: isDesktop ? 16 : 12,
+            color: const Color(0xFF718096),
+            fontWeight: FontWeight.w500,
+            fontFamily: 'Lato',
+          ),
+        ),
+      ],
     );
   }
 }
@@ -253,45 +279,59 @@ class StepTwo extends StatelessWidget {
         vertical: 40,
       ),
       color: const Color(0xFFE6F3FF).withOpacity(0.3),
-      child: Row(
+      child: Flex(
+        direction: isDesktop ? Axis.horizontal : Axis.vertical,
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          if (isDesktop)
-            SvgPicture.asset(
-              'assets/images/undraw_task_31wc.svg',
-              width: 300,
+          // if (isDesktop)
+          if (!isDesktop) ...{
+            rowTwo(isDesktop),
+            const SizedBox(
+              height: 10,
             ),
-          SizedBox(
-            width: 100,
+          },
+          SvgPicture.asset(
+            'assets/images/undraw_task_31wc.svg',
+            width: isDesktop ? 300 : 250,
           ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.baseline,
-            textBaseline: TextBaseline.alphabetic,
-            children: [
-              Text(
-                '2.',
-                style: TextStyle(
-                  fontSize: isDesktop ? 60 : 36,
-                  color: const Color(0xFF718096),
-                  fontWeight: FontWeight.normal,
-                  fontFamily: 'Lato',
-                ),
-              ),
-              const SizedBox(width: 10),
-              Text(
-                'Erstellen dein Lebenslauf',
-                style: TextStyle(
-                  fontSize: isDesktop ? 16 : 12,
-                  color: const Color(0xFF718096),
-                  fontWeight: FontWeight.w500,
-                  fontFamily: 'Lato',
-                ),
-              ),
-            ],
-          ),
+          if (isDesktop) ...{
+            const SizedBox(
+              width: 100,
+            ),
+            rowTwo(isDesktop),
+          },
         ],
       ),
+    );
+  }
+
+  Row rowTwo(bool isDesktop) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.baseline,
+      textBaseline: TextBaseline.alphabetic,
+      mainAxisAlignment: isDesktop ? MainAxisAlignment.start : MainAxisAlignment.center,
+      children: [
+        Text(
+          '2.',
+          style: TextStyle(
+            fontSize: isDesktop ? 60 : 36,
+            color: const Color(0xFF718096),
+            fontWeight: FontWeight.normal,
+            fontFamily: 'Lato',
+          ),
+        ),
+        const SizedBox(width: 10),
+        Text(
+          'Erstellen dein Lebenslauf',
+          style: TextStyle(
+            fontSize: isDesktop ? 16 : 12,
+            color: const Color(0xFF718096),
+            fontWeight: FontWeight.w500,
+            fontFamily: 'Lato',
+          ),
+        ),
+      ],
     );
   }
 }
@@ -308,53 +348,66 @@ class StepThree extends StatelessWidget {
         horizontal: isDesktop ? 80 : 20,
         vertical: 40,
       ),
-      child: Row(
+      child: Flex(
+        direction: isDesktop ? Axis.horizontal : Axis.vertical,
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.end, // Aligns content to the top
-            children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text(
-                    '3.',
-                    style: TextStyle(
-                      fontSize: isDesktop ? 60 : 36,
-                      color: const Color(0xFF718096),
-                      fontWeight: FontWeight.normal,
-                      fontFamily: 'Lato',
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(width: 10),
-              SizedBox(
-                width: 150,
-                height: 60,
-                child: Text(
-                  'Mit nur einem Klick bewerben',
-                  style: TextStyle(
-                    fontSize: isDesktop ? 16 : 12,
-                    color: const Color(0xFF718096),
-                    fontWeight: FontWeight.w500,
-                    fontFamily: 'Lato',
-                  ),
-                ),
-              ),
-            ],
-          ),
+          rowThree(isDesktop),
           SizedBox(
-            width: 100,
+            height: isDesktop ? 0 : 10,
+            width: isDesktop ? 100 : 0,
           ),
-          if (isDesktop)
-            SvgPicture.asset(
-              'assets/images/undraw_personal_file_222m.svg',
-              width: 300,
+          SvgPicture.asset(
+            'assets/images/undraw_personal_file_222m.svg',
+            width: isDesktop ? 300 : 250,
+          ),
+          /* if (isDesktop) ...{
+            const SizedBox(
+              width: 100,
             ),
+            rowThree(isDesktop),
+          },*/
         ],
       ),
+    );
+  }
+
+  Row rowThree(bool isDesktop) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      mainAxisAlignment: isDesktop ? MainAxisAlignment.start : MainAxisAlignment.center,
+      // Aligns content to the top
+      children: [
+        Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Text(
+              '3.',
+              style: TextStyle(
+                fontSize: isDesktop ? 60 : 36,
+                color: const Color(0xFF718096),
+                fontWeight: FontWeight.normal,
+                fontFamily: 'Lato',
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(width: 10),
+        SizedBox(
+          width: 150,
+          height: isDesktop ? 60 : 40,
+          child: Text(
+            'Mit nur einem Klick bewerben',
+            style: TextStyle(
+              fontSize: isDesktop ? 16 : 12,
+              color: const Color(0xFF718096),
+              fontWeight: FontWeight.w500,
+              fontFamily: 'Lato',
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
