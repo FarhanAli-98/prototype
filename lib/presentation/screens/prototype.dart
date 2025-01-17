@@ -3,25 +3,7 @@ import 'package:prototype/presentation/widgets/gradient_button.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:prototype/presentation/widgets/wave_section.dart';
 
-void main() {
-  runApp(const MyApp());
-}
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Job Website',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        fontFamily: 'Lato',
-      ),
-      home: const JobWebsite(),
-    );
-  }
-}
 
 class JobWebsite extends StatelessWidget {
   const JobWebsite({super.key});
@@ -31,9 +13,10 @@ class JobWebsite extends StatelessWidget {
     return const Scaffold(
       body: SingleChildScrollView(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             HeaderSection(),
-             WaveSection(),
+            WaveSection(),
             StepsFlowSection(),
           ],
         ),
@@ -70,6 +53,7 @@ class HeaderSection extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 30),
+                     if(isDesktop)
               GradientButton(
                 width: 320,
                 text: 'Kostenlos Registrieren',
@@ -77,12 +61,19 @@ class HeaderSection extends StatelessWidget {
                   // Define your action here
                 },
               ),
+                if(!isDesktop)
+          SvgPicture.asset(
+            'assets/images/undraw_agreement_aajr.svg', 
+            height: 300,
+
+          ),
             ],
           ),
+          if(isDesktop)
           SvgPicture.asset(
-            'assets/images/undraw_agreement_aajr.svg', // Path to your SVG file
+            'assets/images/undraw_agreement_aajr.svg', 
             width: isDesktop ? 200 : 150,
-            height: 200, // Set the desired height
+            height: 200,
           ),
         ],
       ),
