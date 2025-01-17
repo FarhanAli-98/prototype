@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:prototype/presentation/widgets/gradient_button.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:prototype/presentation/widgets/wave_section.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,6 +33,7 @@ class JobWebsite extends StatelessWidget {
         child: Column(
           children: [
             HeaderSection(),
+             WaveSection(),
             StepsFlowSection(),
           ],
         ),
